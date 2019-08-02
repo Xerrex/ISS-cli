@@ -11,20 +11,19 @@ def current_location():
     return response.json()
 
 
-def passing_time(lat, lon):
+def passing_time(coordiantes):
     """Show when ISS with be at the specified coordinates
     
     Arguments:
-    lat -- The latitude value of a location
-    lon -- The longitude value of a location
+    coordiantes -- the latitude and longitude of a place
     """
     url = "http://api.open-notify.org/iss-pass.json"
-    coordinates = {
-        "lat":lat,
-        "lon":lon
+    coors = {
+        "lat":coordiantes[0],
+        "lon":coordiantes[1]
     }
 
-    response = requests.get(url, params=coordinates)
+    response = requests.get(url, params=coors)
     return response.json()
 
 
@@ -47,7 +46,7 @@ def initialize_loc():
             city_writer = csv.writer(cities_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             for loc in locs:
                 city_writer.writerow(loc)
-        return true
+        return True
         
     else:
         return None
@@ -72,14 +71,13 @@ def known_cities():
                     locations += 1
                     locs.append(row)
                 else:
-                    locs.append(row)
+                    if row: locs.append(row)
                     #print(", ".join(row))
                     locations+= 1
 
             if locations <=1:
                 return None
             return locs
-
 
 
 def add_city(city, lat, lon):
@@ -98,4 +96,19 @@ def add_city(city, lat, lon):
             city_writer.writerow([city.upper(), lat, lon])
         return True
 
+
+def find_city(name):
+    """finds a city from in known cities
+    
+    Parameters
+    ----------
+    name : [String]
+        [the name of a city to find]
+    """
+    cities = known_cities()
+    for city in cities:
+        if name.upper() in city[0]:
+            return (city[1], city[2])
+    return None
+    
 

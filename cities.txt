@@ -1,9 +1,0 @@
-City,Latitude,Longitude
-Nairobi,-1.2921,36.8219
-Mombasa,-4.0435,39.6682
-Kisumu,-0.0917,34.7680
-Thika,-1.0388,37.0834
-Busia,0.4608,34.1115
-Kampala,0.3476,32.5825
-Dar-es-salam,-6.7924,39.2083
-

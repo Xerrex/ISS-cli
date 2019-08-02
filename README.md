@@ -9,4 +9,10 @@ International space station API Command line interaction tool
 
 * **[ISS API](http://open-notify.org)** - an open source project to provide a simple programming interface for some of NASA’s awesome data.
 
+## Usage
+
+```
+run python3 cli.py --help
+```
+to view list of commands
 
